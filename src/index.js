@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { makeData, Logo, Tips } from "./Utils";
-
+import Stepper from 'react-stepper-horizontal';
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -10,35 +10,51 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: makeData()
+      data: makeData(),
+      dummydata: [{
+        firstName: "gokul",
+        lastName: "Vijay"
+      }, {
+        firstName: "gokul",
+        lastName: "Vijay"
+      }, {
+        firstName: "gokul",
+        lastName: "Vijay"
+      }]
+
     };
   }
 
-  renderCell () {
+  renderCell(row) {
 
+    console.log(row)
     return (<div className="test1">
-<table  >
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
- 
-</table>
+      <div className="test2">
+        <Stepper steps={[{ title: 'Step One' }, { title: 'Step Two' }, { title: 'Step Three' }, { title: 'Step Four' }]} activeStep={1} />
 
+      </div>
+      <ReactTable
+        data={this.state.dummydata}
+        columns={[
+          {
+            Header: "First Name",
+            accessor: "firstName",
+          },
+          {
+            Header: "Last Name",
+            accessor: "lastName",
+          },
+          {
 
-
-
+            Header: "Age",
+            accessor: "age",
+          }
+        ]}
+        showPagination={false}
+        sortable={false}
+        defaultPageSize={3}
+        className="-striped -highlight"
+      />
     </div>);
   }
 
@@ -47,6 +63,7 @@ class App extends React.Component {
     return (
       <div>
         <ReactTable
+
           data={data}
           columns={[
             {
@@ -89,7 +106,7 @@ class App extends React.Component {
           ]}
           defaultPageSize={10}
           className="-striped -highlight"
-          SubComponent={() => this.renderCell()}
+          SubComponent={(row) => this.renderCell(row)}
         />
         <br />
 

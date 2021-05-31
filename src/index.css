@@ -4,10 +4,11 @@ body {
   font-size: 14px;
 }
 .test1 {
-  padding:50px;
-  background-color: aqua;
+  padding:20px;
+  background-color: white;
   text-align: center;
-  margin: 20px;
+  margin: 10px;
+  border: 1px solid gray;;
 }
 table, th, td {
   border: 1px solid black;
@@ -15,4 +16,7 @@ table, th, td {
 }
 table {
   width:100%
+}
+.test2 {
+  margin-bottom:20px
 }
